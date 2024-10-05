@@ -1,19 +1,13 @@
 #!/bin/bash
 
-# 获取最新的 node_exporter 版本号
-LATEST_VERSION=$(curl -s https://api.github.com/repos/prometheus/node_exporter/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
-
-# 生成下载链接
-DOWNLOAD_URL="https://github.com/prometheus/node_exporter/releases/download/${LATEST_VERSION}/node_exporter-${LATEST_VERSION}.linux-amd64.tar.gz"
-
 # 下载 node_exporter
-wget "${DOWNLOAD_URL}"
+wget https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
 
 # 解压缩
-tar -xzvf "node_exporter-${LATEST_VERSION}.linux-amd64.tar.gz"
+tar -xzvf node_exporter-1.8.2.linux-amd64.tar.gz
 
 # 进入目录
-cd "node_exporter-${LATEST_VERSION}.linux-amd64/" || exit
+cd node_exporter-1.8.2.linux-amd64/ || exit
 
 # 移动可执行文件
 mv node_exporter /usr/bin
@@ -40,4 +34,3 @@ systemctl enable --now node_exporter
 
 # 显示服务状态
 systemctl status node_exporter
-
