@@ -27,7 +27,7 @@ echo "export PATH=\${PROMETHEUS_HOME}/bin:\$PATH" >> /etc/profile.d/prometheus.s
 source /etc/profile.d/prometheus.sh
 
 # 移动到目标位置
-mv ./prometheus/ /opt/
+mv ../prometheus/ /opt/
 
 # 创建 systemd 服务文件
 cat <<EOL > /etc/systemd/system/prometheus.service
